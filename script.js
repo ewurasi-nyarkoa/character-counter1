@@ -31,15 +31,18 @@ themeToggle.addEventListener("click", () => {
     }
   });
 
-let CHARACTER_LIMIT = 300;
-limitInput.addEventListener('input', () => {
-  const newLimit = parseInt(limitInput.value);
-  if (!isNaN(newLimit) && newLimit > 0) {
-    CHARACTER_LIMIT = newLimit;
-    updateCharacterCount(); 
-  }
+  limitInput.addEventListener('input', () => {
+    const newLimit = parseInt(limitInput.value);
+    if (!isNaN(newLimit) && newLimit > 0) {
+      CHARACTER_LIMIT = newLimit;
   
-});
+     
+      if (charLimitCheckbox.checked) {
+        updateStats();
+      }
+    }
+  });
+  
 
 
 function updateStats() {
@@ -67,9 +70,9 @@ function updateStats() {
 
       exceededLimitEl.style.display = "block";
     } else {
-      textarea.style.border = "";
-      exceededLimitEl.innerHTML = "";
-      exceededLimitEl.style.display = "none";
+        textarea.style.boxShadow = "none"; 
+        exceededLimitEl.innerHTML = "";
+        exceededLimitEl.style.display = "none";
     }
   
  
@@ -120,8 +123,9 @@ excludeSpacesCheckbox.addEventListener("change", () => {
   
     // Show or hide the container based on letter count
     if (sortedLetters.length === 0) {
-      letterDensityContainer.textContent = "No characters found. Start typing to see letter density.";
-      letterDensityContainer.className = "letter";
+        letterDensityContainer.innerHTML = `<p class="no-letters-message">No characters found. Start typing to see letter density.</p>`;
+
+    //   letterDensityContainer.className = "letter";
       return; 
     } else {
       letterDensityContainer.style.display = "block";

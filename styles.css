@@ -284,9 +284,20 @@
      body.light-theme .letter-label{
       color: var(--neutral900);
      }
+
+     .no-letters-message {
+      color: var(--neutral200);
+      font-size: var(--textpreset4-size);
+      text-align: left;
+      margin-top: 10px;
+    }
+    
+ 
+    body.light-theme .no-letters-message {
+      color: var(--neutral600);
+    }
       .letter-bar-wrapper {
         flex-grow: 1;
-        max-width: 859px;
         height: 12px;
         background-color: var(--neutral800);
         border-radius: 4px;
