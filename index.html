@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"> -->
+  <script src="https://kit.fontawesome.com/2414101aec.js" crossorigin="anonymous"></script>
 
   
   <title>Frontend Mentor | Character counter</title>
@@ -22,34 +23,36 @@
       <h1>Analyze your text<br>in real-time.</h1>
     </section>
     <section>
-      <textarea placeholder="type your text here..."></textarea>
+      <textarea placeholder="start typing here...(or paste your text)"></textarea>
+      <p class="exceeded-limit"></p>
     </section>
     <section class="checkbox-options">
       <div class="option-group">
         <label>
           <input type="checkbox" />
-          <span class="label text">Exclude Spaces</span>
+          <span class="label ">Exclude Spaces</span>
          </label>
         <label>
           <input type="checkbox" />
-          <span class="label text">Set Character Limit</span>
+          <span class="label ">Set Character Limit</span>
+          <input type="text" class="limit limit-hidden" placeholder=""/>
         </label>
       </div>
       <p class="label">Approx. reading time: &lt; 1 minute</p>
     </section>
     <section class="stats">
       <article class="stat-card purple">
-        <p class="text"></p>
+        <p class="text">00</p>
         <p class="subtext">Total Characters</p>
         <img src="./assets/images/pattern-character.png" alt="Character Count Icon">
       </article>
       <article class="stat-card yellow">
-        <p class="text"></p>
+        <p class="text">00</p>
         <p class="subtext">Word Count</p>
         <img src="./assets/images/pattern-word-count.svg" alt="Sentence Count Icon">
       </article>
       <article class="stat-card orange">
-        <p class="text"></p>
+        <p class="text">00</p>
         <p class="subtext">Sentence Count</p>
         <img src="./assets/images/counter sentence.png" alt="Word Count Icon">
       </article>
