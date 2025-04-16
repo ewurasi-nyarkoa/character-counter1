@@ -318,6 +318,9 @@
         height: 24px;
         white-space: nowrap;
       }
+      body.light-theme .see-more-btn{
+        color: var(--neutral900);
+      }
       
       .see-more-btn {
         background: transparent;
