@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/2414101aec.js" crossorigin="anonymous"></script>
 
   
   <title>Frontend Mentor | Character counter</title>
 </head>
+<body class="dark-theme">
 <nav>
   <img id="logo" src="./assets/images/logo-dark-theme.svg" alt="Logo">
   <img id="themeToggle" src="./assets/images/icon-sun.svg" alt="Light Mode Toggle" >
@@ -21,47 +22,49 @@
       <h1>Analyze your text<br>in real-time.</h1>
     </section>
     <section>
-      <textarea placeholder="Design is the silent ambassador of your brand. Simplicity is key to effective communication, creating clarity in every interaction. A great design transforms complex ideas into elegant solutions, making them easy to understand. It blends aesthetics and functionality seamlessly"></textarea>
+      <textarea placeholder="start typing here...(or paste your text)"></textarea>
+      <p class="exceeded-limit"></p>
     </section>
     <section class="checkbox-options">
       <div class="option-group">
         <label>
           <input type="checkbox" />
-          <span class="label text"> Exclude Spaces</span>
+          <span class="label ">Exclude Spaces</span>
          </label>
         <label>
           <input type="checkbox" />
-          <span class="label text">Set Character Limit</span>
+          <span class="label ">Set Character Limit</span>
+          <input type="text" class="limit limit-hidden" placeholder=""/>
         </label>
       </div>
       <p class="label">Approx. reading time: &lt; 1 minute</p>
     </section>
     <section class="stats">
       <article class="stat-card purple">
-        <p class="text">278</p>
+        <p class="text">00</p>
         <p class="subtext">Total Characters</p>
         <img src="./assets/images/pattern-character.png" alt="Character Count Icon">
       </article>
       <article class="stat-card yellow">
-        <p class="text">39</p>
+        <p class="text">00</p>
         <p class="subtext">Word Count</p>
         <img src="./assets/images/pattern-word-count.svg" alt="Sentence Count Icon">
       </article>
       <article class="stat-card orange">
-        <p class="text">04</p>
+        <p class="text">00</p>
         <p class="subtext">Sentence Count</p>
         <img src="./assets/images/counter sentence.png" alt="Word Count Icon">
       </article>
     </section>
     <section class="letter-density">
       <h2>Letter Density</h2>
-      <div class="letter-row"><span class="letter-label">E</span><div class="letter-bar-wrapper"><div class="letter-bar" style="width: 40%;"></div></div><span class="percentage">40 (16.09%)</span></div>
-      <div class="letter-row"><span class="letter-label">I</span><div class="letter-bar-wrapper"><div class="letter-bar" style="width: 29%;"></div></div><span class="percentage">29 (11.67%)</span></div>
-      <div class="letter-row"><span class="letter-label">T</span><div class="letter-bar-wrapper"><div class="letter-bar" style="width: 28%;"></div></div><span class="percentage">28 (11.24%)</span></div>
-      <div class="letter-row"><span class="letter-label">O</span><div class="letter-bar-wrapper"><div class="letter-bar" style="width: 22%;"></div></div><span class="percentage">22 (8.84%)</span></div>
-      <div class="letter-row"><span class="letter-label">N</span><div class="letter-bar-wrapper"><div class="letter-bar" style="width: 21%;"></div></div><span class="percentage">21 (8.43%)</span></div>
+      <div id="letterDensityContainer"></div>
     </section>
-  </main>
-  <script src="script.js"></script>
+
+    </main>
+  <script src="./script.js"></script>
+
+
+
 </body>
 </html>
