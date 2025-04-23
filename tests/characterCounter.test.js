@@ -27,7 +27,7 @@ function calculateStats(text, excludeSpaces = false) {
     sentenceCountEl.textContent = sentenceCount;
     readingTimeEl.textContent = `Approx. reading time: ${readingTime}`;
   
-    // Handle character limit logic
+
     if (charLimitCheckbox.checked && charCount > window.CHARACTER_LIMIT) {
       textarea.style.boxShadow = '0px 0px 8px 0px rgba(218,55,1,0.8)';
       exceededLimitEl.innerHTML = `<i class="fas fa-info-circle" style="color: red; margin-right: 6px;"></i> <span>Limit reached! Your text exceeds ${window.CHARACTER_LIMIT} characters.</span>`;
@@ -39,7 +39,7 @@ function calculateStats(text, excludeSpaces = false) {
     }
   }
   
-  // Test Suite
+  // Test 
   describe('String Length Calculation', () => {
     test('Correctly counts characters in a given string', () => {
       const text = 'Hello World!';

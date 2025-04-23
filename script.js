@@ -152,5 +152,5 @@ textarea.addEventListener("input", updateStats);
 excludeSpacesCheckbox.addEventListener("change", handleCheckboxChange);
 charLimitCheckbox.addEventListener("change", handleCheckboxChange);
 
-// Initial run
+
 updateStats();
