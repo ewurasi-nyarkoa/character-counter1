@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -13,7 +13,10 @@
 <body class="dark-theme">
 <nav>
   <img id="logo" src="./assets/images/logo-dark-theme.svg" alt="Logo">
-  <img id="themeToggle" src="./assets/images/icon-sun.svg" alt="Light Mode Toggle" >
+  <div class="toggle">
+    <img id="themeToggle" src="./assets/images/icon-sun.svg" alt="Light Mode Toggle" >
+  </div>
+
 </nav>
 
 
@@ -28,29 +31,29 @@
     <section class="checkbox-options">
       <div class="option-group">
         <label>
-          <input type="checkbox" />
+          <input type="checkbox" id="excludeSpace"/>
           <span class="label ">Exclude Spaces</span>
          </label>
         <label>
-          <input type="checkbox" />
+          <input type="checkbox" id="set-limit" />
           <span class="label ">Set Character Limit</span>
-          <input type="text" class="limit limit-hidden" placeholder=""/>
+          <input type="text" class="limit limit-hidden" id="charLimit" placeholder=""/>
         </label>
       </div>
-      <p class="label">Approx. reading time: &lt; 1 minute</p>
+      <p class="label" id="readingTime">Approx. reading time: &lt; 1 minute</p>
     </section>
     <section class="stats">
-      <article class="stat-card purple">
+      <article class="stat-card purple" id="charCount">
         <p class="text">00</p>
         <p class="subtext">Total Characters</p>
         <img src="./assets/images/pattern-character.png" alt="Character Count Icon">
       </article>
-      <article class="stat-card yellow">
+      <article class="stat-card yellow" id="wordCount">
         <p class="text">00</p>
         <p class="subtext">Word Count</p>
         <img src="./assets/images/pattern-word-count.svg" alt="Sentence Count Icon">
       </article>
-      <article class="stat-card orange">
+      <article class="stat-card orange " id="sentenceCount">
         <p class="text">00</p>
         <p class="subtext">Sentence Count</p>
         <img src="./assets/images/counter sentence.png" alt="Word Count Icon">
@@ -66,5 +69,77 @@
 
 
 
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://kit.fontawesome.com/2414101aec.js" crossorigin="anonymous"></script>
+
+  <title>Frontend Mentor | Character counter</title>
+</head>
+<body class="dark-theme">
+  <nav>
+    <img id="logo" src="./assets/images/logo-dark-theme.svg" alt="Logo" />
+    <div class="toggle">
+      <img id="themeToggle" src="./assets/images/icon-sun.svg" alt="Light Mode Toggle" />
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero text">
+      <h1>Analyze your text<br />in real-time.</h1>
+    </section>
+
+    <section>
+      <textarea placeholder="start typing here...(or paste your text)"></textarea>
+      <p class="exceeded-limit"></p>
+    </section>
+
+    <section class="checkbox-options">
+      <div class="option-group">
+        <label for="excludeSpaces">
+          <input type="checkbox" id="excludeSpaces" />
+          <span class="label">Exclude Spaces</span>
+        </label>
+
+        <label for="charLimitCheckbox">
+          <input type="checkbox" id="charLimitCheckbox" />
+          <span class="label">Set Character Limit</span>
+          <input type="text" class="limit limit-hidden" id="charLimitInput" placeholder="" />
+        </label>
+      </div>
+      <p class="label" id="readingTime">Approx. reading time: &lt; 1 minute</p>
+    </section>
+
+    <section class="stats">
+      <article class="stat-card purple" id="charCount">
+        <p class="text">00</p>
+        <p class="subtext">Total Characters</p>
+        <img src="./assets/images/pattern-character.png" alt="Character Count Icon" />
+      </article>
+      <article class="stat-card yellow" id="wordCount">
+        <p class="text">00</p>
+        <p class="subtext">Word Count</p>
+        <img src="./assets/images/pattern-word-count.svg" alt="Sentence Count Icon" />
+      </article>
+      <article class="stat-card orange" id="sentenceCount">
+        <p class="text">00</p>
+        <p class="subtext">Sentence Count</p>
+        <img src="./assets/images/counter sentence.png" alt="Word Count Icon" />
+      </article>
+    </section>
+
+    <section class="letter-density">
+      <h2>Letter Density</h2>
+      <div id="letterDensityContainer"></div>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
 </body>
 </html>
