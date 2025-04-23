@@ -12,7 +12,7 @@ const readingTimeEl = document.querySelector(".checkbox-options p.label");
 const excludeSpacesCheckbox = document.querySelectorAll("input[type='checkbox']")[0];
 const charLimitCheckbox = document.querySelectorAll("input[type='checkbox']")[1];
 const letterDensityContainer = document.getElementById("letterDensityContainer");
-console.log(limitInput)
+
 
 
 themeToggle.addEventListener("click", () => {
@@ -87,6 +87,7 @@ charLimitCheckbox.addEventListener("change", updateStats);
 // Initial run
 updateStats();
 
+
 // Add event listeners to the checkboxes
 excludeSpacesCheckbox.addEventListener("change", () => {
     console.log("Exclude spaces checkbox toggled");
@@ -97,10 +98,10 @@ excludeSpacesCheckbox.addEventListener("change", () => {
     console.log("Character limit checkbox toggled");
     if(charLimitCheckbox.checked){
       limitInput.classList.remove('limit-hidden')
-      console.log('limit')
+     
     }else{
       limitInput.classList.add('limit-hidden')
-      console.log('limit-hidden')
+      
     }
     updateStats();
   });   
@@ -175,6 +176,4 @@ excludeSpacesCheckbox.addEventListener("change", () => {
   });
   
   }
-  
-  
 

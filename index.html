@@ -13,7 +13,10 @@
 <body class="dark-theme">
 <nav>
   <img id="logo" src="./assets/images/logo-dark-theme.svg" alt="Logo">
-  <img id="themeToggle" src="./assets/images/icon-sun.svg" alt="Light Mode Toggle" >
+  <div class="toggle">
+    <img id="themeToggle" src="./assets/images/icon-sun.svg" alt="Light Mode Toggle" >
+  </div>
+
 </nav>
 
 
@@ -28,11 +31,11 @@
     <section class="checkbox-options">
       <div class="option-group">
         <label>
-          <input type="checkbox" />
+          <input type="checkbox" id="exclude-space"/>
           <span class="label ">Exclude Spaces</span>
          </label>
         <label>
-          <input type="checkbox" />
+          <input type="checkbox" id="set-limit" />
           <span class="label ">Set Character Limit</span>
           <input type="text" class="limit limit-hidden" placeholder=""/>
         </label>
