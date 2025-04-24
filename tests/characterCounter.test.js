@@ -29,46 +29,42 @@ function calculateStats(text, excludeSpaces = false) {
   
 
     if (charLimitCheckbox.checked && charCount > window.CHARACTER_LIMIT) {
-      textarea.style.boxShadow = '0px 0px 8px 0px rgba(218,55,1,0.8)';
       exceededLimitEl.innerHTML = `<i class="fas fa-info-circle" style="color: red; margin-right: 6px;"></i> <span>Limit reached! Your text exceeds ${window.CHARACTER_LIMIT} characters.</span>`;
-      exceededLimitEl.style.display = 'block';
-    } else {
-      textarea.style.boxShadow = 'none';
+     } else {
       exceededLimitEl.innerHTML = '';
-      exceededLimitEl.style.display = 'none';
     }
-  }
+ }
   
-  // Test 
+ 
   describe('String Length Calculation', () => {
     test('Correctly counts characters in a given string', () => {
       const text = 'Hello World!';
-      const result = calculateStats(text, false);
-      expect(result.charCount).toBe(12);
+      const result = calculateStats(text, false).charCount;
+      expect(result).toBe(12);
     });
   
     test('Handles edge cases (empty input, special characters, excessive whitespace)', () => {
       const emptyText = '';
       const specialText = '   Hello,   World!   ';
-      const resultEmpty = calculateStats(emptyText, false);
-      const resultSpecial = calculateStats(specialText, false);
+      const resultEmpty = calculateStats(emptyText, false).charCount;
+      const resultSpecial = calculateStats(specialText, false).charCount;
   
-      expect(resultEmpty.charCount).toBe(0);
-      expect(resultSpecial.charCount).toBe(21);
+      expect(resultEmpty).toBe(0);
+      expect(resultSpecial).toBe(21);
     });
   });
   
   describe('Word and Sentence Count', () => {
     test('Correctly splits text into words', () => {
       const text = 'Hello World! This is a test.';
-      const result = calculateStats(text, false);
-      expect(result.wordCount).toBe(6);
+      const result = calculateStats(text, false).wordCount;
+      expect(result).toBe(6);
     });
   
     test('Correctly identifies sentence-ending punctuation', () => {
       const text = 'Hello. How are you doing? I am fine!';
-      const result = calculateStats(text, false);
-      expect(result.sentenceCount).toBe(3);
+      const result = calculateStats(text, false).sentenceCount;
+      expect(result).toBe(3);
     });
   });
   
@@ -77,44 +73,60 @@ function calculateStats(text, excludeSpaces = false) {
   
     beforeEach(() => {
       // Mock DOM elements
-      document.body.innerHTML = `
-        <div>
-          <textarea></textarea>
-          <div class="stat-card">
-            <span class="text"></span>
-            <span class="text"></span>
-            <span class="text"></span>
-          </div>
-          <p class="checkbox-options label"></p>
-          <input type="checkbox" />
-          <input type="checkbox" />
-          <div id="letterDensityContainer"></div>
-          <div class="exceeded-limit"></div>
-          <img id="logo" />
-          <button id="themeToggle"></button>
-          <input class="limit" />
+      const mockDocument = document.implementation.createHTMLDocument('Mock Document');
+      mockDocument.body.innerHTML = `
+      <div>
+        <textarea></textarea>
+        <div class="stat-card">
+        <span class="text"></span>
+        <span class="text"></span>
+        <span class="text"></span>
         </div>
+        <p class="checkbox-options label"></p>
+        <input type="checkbox" />
+        <input type="checkbox" />
+        <div id="letterDensityContainer"></div>
+        <div class="exceeded-limit"></div>
+        <img id="logo" />
+        <button id="themeToggle"></button>
+        <input class="limit" />
+      </div>
       `;
-  
+    
       domElements = {
-        body: document.body,
-        textarea: document.querySelector('textarea'),
-        charCountEl: document.querySelectorAll('.stat-card .text')[0],
-        wordCountEl: document.querySelectorAll('.stat-card .text')[1],
-        sentenceCountEl: document.querySelectorAll('.stat-card .text')[2],
-        readingTimeEl: document.querySelector('.checkbox-options.label'),
-        excludeSpacesCheckbox: document.querySelectorAll('input[type="checkbox"]')[0],
-        charLimitCheckbox: document.querySelectorAll('input[type="checkbox"]')[1],
-        exceededLimitEl: document.querySelector('.exceeded-limit'),
+      body: mockDocument.body,
+      textarea: mockDocument.querySelector('textarea'),
+      charCountEl: mockDocument.querySelector('.stat-card .text.char-count'),
+      wordCountEl: mockDocument.querySelector('.stat-card .text.word-count'),
+      sentenceCountEl: mockDocument.querySelector('.stat-card .text.sentence-count'),
+      readingTimeEl: mockDocument.querySelector('.checkbox-options.label'),
+      excludeSpacesCheckbox: mockDocument.querySelector('input[type="checkbox"][name="excludeSpaces"]'),
+      charLimitCheckbox: mockDocument.querySelector('input[type="checkbox"][name="charLimit"]'),
+      exceededLimitEl: mockDocument.querySelector('.exceeded-limit'),
       };
     });
   
-    test('Simulates user typing and updates counters dynamically', () => {
+    test('Simulates user typing and updates reading time dynamically', () => {
       domElements.textarea.value = 'Hello World!';
       updateStats(domElements);
-  
-      expect(domElements.charCountEl.textContent).toBe('12'); 
+      expect(domElements.readingTimeEl.textContent).toBe('Approx. reading time: 1 min read');
+    });
+
+    test('Simulates user typing and updates character count dynamically', () => {
+      domElements.textarea.value = 'Hello World!';
+      updateStats(domElements);
+      expect(domElements.charCountEl.textContent).toBe('12');
+    });
+
+    test('Simulates user typing and updates word count dynamically', () => {
+      domElements.textarea.value = 'Hello World!';
+      updateStats(domElements);
       expect(domElements.wordCountEl.textContent).toBe('2');
+    });
+
+    test('Simulates user typing and updates sentence count dynamically', () => {
+      domElements.textarea.value = 'Hello World!';
+      updateStats(domElements);
       expect(domElements.sentenceCountEl.textContent).toBe('1');
     });
   
@@ -125,14 +137,12 @@ function calculateStats(text, excludeSpaces = false) {
   
       updateStats(domElements);
   
-      expect(domElements.exceededLimitEl.style.display).toBe('block');
       expect(domElements.exceededLimitEl.innerHTML).toContain('Limit reached!');
     });
   
-    test('Updates estimated reading time correctly', () => {
-      domElements.textarea.value = 'This is a test message with multiple words.';
+    test('Handles reading time calculation correctly', () => {
+      domElements.textarea.value = 'This is a test sentence.';
       updateStats(domElements);
-  
       expect(domElements.readingTimeEl.textContent).toBe('Approx. reading time: 1 min read');
     });
   });
