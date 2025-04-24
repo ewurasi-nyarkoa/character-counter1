@@ -154,3 +154,5 @@ charLimitCheckbox.addEventListener("change", handleCheckboxChange);
 
 
 updateStats();
+
+module.exports = {updateStats};
